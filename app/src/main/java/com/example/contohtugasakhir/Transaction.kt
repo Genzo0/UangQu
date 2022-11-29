@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 data class Transaction(
     @PrimaryKey(autoGenerate = true) val id : Int,
     val label:String,
-    val amount: Double,
-    val description: String
+    val amount: Long,
+    val description: String,
+    val date: String
     ) : java.io.Serializable{
 }

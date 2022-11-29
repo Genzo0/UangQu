@@ -119,7 +119,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun undoDelete(){
         GlobalScope.launch {
-            db.transactionDao().insertAll(deletedTransaction)
+            db.transactionDao().insert(deletedTransaction)
 
             transactions = oldtransactions
 
@@ -128,20 +128,18 @@ class MainActivity : AppCompatActivity() {
                 updateDashboard()
             }
         }
-
-
     }
 
     private fun updateDashboard(){
-        val totalAmount:Double = transactions.map{it.amount}.sum()
+        val totalAmount:Long = transactions.map{it.amount}.sum()
         val budgetAmount = transactions.filter{it.amount>0}.map{it.amount}.sum()
         val expenseAmount = totalAmount-budgetAmount
         balance = findViewById(R.id.balance)
         budget = findViewById(R.id.budget)
         expense = findViewById(R.id.expense)
 
-        balance.text = "$ %.2f".format(totalAmount)
-        budget.text = "$ %.2f".format(budgetAmount)
-        expense.text = "$ %.2f".format(expenseAmount)
+        balance.text = "Rp.${totalAmount}"
+        budget.text = "Rp.${budgetAmount}"
+        expense.text = "Rp.${expenseAmount}"
     }
 }

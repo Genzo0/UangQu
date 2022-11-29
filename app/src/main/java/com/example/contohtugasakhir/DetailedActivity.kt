@@ -1,5 +1,6 @@
 package com.example.contohtugasakhir
 
+import android.app.DatePickerDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,8 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class DetailedActivity : AppCompatActivity() {
     private lateinit var updateButton : Button
@@ -26,6 +29,8 @@ class DetailedActivity : AppCompatActivity() {
     private lateinit var closeButton : ImageButton
     private lateinit var rootView : ConstraintLayout
     private lateinit var transaction: Transaction
+    private lateinit var dateLayout : TextInputLayout
+    private lateinit var dateInput : TextInputEditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,11 +45,29 @@ class DetailedActivity : AppCompatActivity() {
         descriptionLayout = findViewById(R.id.descriptionLayout)
         closeButton = findViewById(R.id.closeButton)
         rootView = findViewById(R.id.rootView)
+        dateInput = findViewById(R.id.dateInput)
+        dateLayout = findViewById(R.id.dateLayout)
 
         transaction = intent.getSerializableExtra("transaction") as Transaction
         labelInput.setText(transaction.label)
         amountInput.setText(transaction.amount.toString())
         descriptionInput.setText(transaction.description)
+        dateInput.setText(transaction.date)
+
+        val cal = Calendar.getInstance()
+        val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateLabel(cal)
+        }
+
+        dateInput.setOnClickListener{
+            DatePickerDialog(this, dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
+        }
 
         rootView.setOnClickListener{
             this.window.decorView.clearFocus()
@@ -67,23 +90,22 @@ class DetailedActivity : AppCompatActivity() {
 
         updateButton.setOnClickListener {
             val label = labelInput.text.toString()
-            val amount = amountInput.text.toString().toDoubleOrNull()
+            val amount = amountInput.text.toString().toLongOrNull()
             val description = descriptionInput.text.toString()
+            val date = dateInput.text.toString()
 
             if(label.isEmpty()) labelLayout.error = "Please enter a valid label"
 
             else if(amount == null) amountLayout.error = "Please enter a valid amount"
 
             else {
-                val transaction = Transaction(transaction.id, label, amount, description)
+                val transaction = Transaction(transaction.id, label, amount, description, date)
                 update(transaction)
             }
         }
-
         closeButton.setOnClickListener{
             finish()
         }
-
     }
 
     private fun update(transaction: Transaction){
@@ -94,6 +116,13 @@ class DetailedActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun updateLabel(cal: Calendar) {
+        val myFormat = "yyyy-MM-dd" // mention the format you need
+        val localeIndonesia = Locale("id", "ID")
+        val sdf = SimpleDateFormat(myFormat, localeIndonesia)
+        dateInput.setText(sdf.format(cal.time))
     }
 
 }

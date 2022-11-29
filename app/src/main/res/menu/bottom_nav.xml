@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Outcome"
+        android:icon="@drawable/ic_money"
+        android:id="@+id/outcome"
+        />
+    <item android:title="Income"
+        android:icon="@drawable/ic_money"
+        android:id="@+id/income"/>
+
+</menu>

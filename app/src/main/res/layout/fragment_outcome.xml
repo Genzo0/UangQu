@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/rootView"
-    tools:context=".DetailedActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".OutcomeFragment"
+    android:theme="@style/outcome">
 
     <ImageButton
         android:id="@+id/closeButton"
@@ -15,6 +15,26 @@
         android:background="@drawable/close_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="outcome"
+            android:textAllCaps="true"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/red"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -32,7 +52,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            app:boxStrokeWidth="0dp"
             android:hint="Label"
             app:errorEnabled="true">
 
@@ -40,9 +59,9 @@
                 android:id="@+id/labelInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/label_selector_red"
                 android:drawablePadding="12dp"
                 android:maxLines="1"
-                android:textSize="34sp"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,18 +72,16 @@
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            app:boxStrokeWidth="0dp"
-            android:hint="Amount"
+            android:hint="Outcome Amount"
             app:errorEnabled="true">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/amountInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/money_selector"
+                android:drawableStart="@drawable/money_selector_red"
                 android:drawablePadding="12dp"
                 android:maxLines="1"
-                android:textSize="34sp"
                 android:inputType="numberDecimal|numberSigned"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +92,6 @@
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            app:boxStrokeWidth="0dp"
             android:hint="Description"
             app:errorEnabled="true">
 
@@ -83,8 +99,8 @@
                 android:id="@+id/descriptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/description_selector_red"
                 android:drawablePadding="12dp"
-                android:textSize="34sp"
                 android:maxLines="1"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -92,11 +108,10 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dateLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:layout_width="match_parent"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            app:boxStrokeWidth="0dp"
             android:hint="Date"
             app:errorEnabled="true">
 
@@ -104,27 +119,22 @@
                 android:id="@+id/dateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_date"
                 android:drawablePadding="12dp"
-                android:textSize="34sp"
                 android:maxLines="1"
                 android:inputType="text"
                 android:focusable="false"/>
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Button
+            android:id="@+id/addTransactionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Add Transaction"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:padding="12dp"
+            android:backgroundTint="@color/red"
+            android:textColor="@color/white"/>
     </LinearLayout>
-
-    <Button
-        android:id="@+id/updateButton"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:padding="10dp"
-        android:text="Update Transaction"
-        android:layout_margin="10dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
