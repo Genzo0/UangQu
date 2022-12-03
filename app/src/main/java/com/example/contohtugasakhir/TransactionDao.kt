@@ -19,4 +19,7 @@ interface TransactionDao {
 
     @Update
     fun update(vararg transaction: Transaction)
+
+    @Query("SELECT * FROM transactions WHERE label LIKE :label")
+    fun findTransaction(label: String): List<Transaction>
 }

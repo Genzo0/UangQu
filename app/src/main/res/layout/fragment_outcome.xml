@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".OutcomeFragment"
-    android:theme="@style/outcome">
+    android:theme="@style/outcome"
+    android:id="@+id/outcomeLayout">
 
     <ImageButton
         android:id="@+id/closeButton"

@@ -1,13 +1,18 @@
 package com.example.contohtugasakhir
 
 import android.app.DatePickerDialog
+import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.room.Room
@@ -15,6 +20,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -39,6 +45,7 @@ class OutcomeFragment : Fragment() {
     private lateinit var closeButton : ImageButton
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
+    private lateinit var outcomeLayout : ConstraintLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,13 +66,36 @@ class OutcomeFragment : Fragment() {
         closeButton = view.findViewById(R.id.closeButton)
         dateLayout = view.findViewById(R.id.dateLayout)
         dateInput = view.findViewById(R.id.dateInput)
+        outcomeLayout = view.findViewById(R.id.outcomeLayout)
 
         labelInput.addTextChangedListener{
             if(it!!.count()>0) labelLayout.error = null
         }
-        amountInput.addTextChangedListener{
-            if(it!!.count()>0) amountLayout.error = null
-        }
+
+        amountInput.addTextChangedListener(object : TextWatcher {
+            var setEditText = amountInput.text.toString().trim()
+            override fun afterTextChanged(s: Editable?) {
+                if(s!!.count()>0) amountLayout.error = null
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(!s.toString().equals(setEditText)){
+                    amountInput.removeTextChangedListener(this)
+                    var replace = s.toString().replace(Regex("[Rp.]"), "")
+                    if(!replace.isEmpty()){
+                        setEditText = rupiahFormats(replace.toLong())
+                    } else {
+                        setEditText = ""
+                    }
+                    amountInput.setText(setEditText)
+                    amountInput.setSelection(setEditText.length)
+                    amountInput.addTextChangedListener(this)
+                }
+            }
+        })
 
         val cal = Calendar.getInstance()
         dateInput.setText(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
@@ -86,7 +116,7 @@ class OutcomeFragment : Fragment() {
 
         addTransactionButton.setOnClickListener {
             val label = labelInput.text.toString()
-            val amount = amountInput.text.toString().toLongOrNull()
+            val amount = amountInput.text.toString().replace(Regex("[Rp.]"), "").toLongOrNull()
             val description = descriptionInput.text.toString()
             val date = dateInput.text.toString()
 
@@ -96,6 +126,13 @@ class OutcomeFragment : Fragment() {
                 val transaction = Transaction(0, label, amount*-1, description, date)
                 insert(transaction)
             }
+        }
+
+        outcomeLayout.setOnClickListener{
+            this.activity?.window?.decorView?.clearFocus()
+
+            val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(it.windowToken, 0)
         }
 
         closeButton.setOnClickListener{
@@ -118,6 +155,19 @@ class OutcomeFragment : Fragment() {
         GlobalScope.launch{
             db.transactionDao().insert(transaction)
             activity?.finish()
+        }
+    }
+
+    private fun rupiahFormats(number : Long) : String{
+        val localeId = Locale("id", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeId)
+        var rupiahFormats = numberFormat.format((number))
+        var split = rupiahFormats.split(',')
+        var length = split[0].length
+        if(number >= 0){
+            return split[0].substring(0,2)+"."+split[0].substring(2,length)
+        } else {
+            return split[0].substring(0,3)+"."+split[0].substring(3,length)
         }
     }
 

@@ -1,5 +1,6 @@
 package com.example.contohtugasakhir
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.text.NumberFormat
+import java.util.*
 
 class TransactionAdapter(private var transactions: List<Transaction>) : RecyclerView.Adapter<TransactionAdapter.TransactionHolder>() {
 
@@ -25,10 +28,10 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         val context = holder.amount.context
 
         if(transaction.amount >= 0){
-            holder.amount.text = "+ ${transaction.amount}"
+            holder.amount.text = "+${rupiahFormats(transaction.amount)}"
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.green))
         } else {
-            holder.amount.text = "- ${Math.abs(transaction.amount)}"
+            holder.amount.text = "${rupiahFormats(transaction.amount)}"
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
 
@@ -48,5 +51,17 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
     fun setData(transactions : List<Transaction>){
         this.transactions = transactions
         notifyDataSetChanged()
+    }
+    private fun rupiahFormats(number : Long) : String{
+        val localeId = Locale("id", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeId)
+        var rupiahFormats = numberFormat.format((number))
+        var split = rupiahFormats.split(',')
+        var length = split[0].length
+        if(number >= 0){
+            return split[0].substring(0,2)+"."+split[0].substring(2,length)
+        } else {
+            return split[0].substring(0,3)+"."+split[0].substring(3,length)
+        }
     }
 }
