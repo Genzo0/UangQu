@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-import androidx.appcompat.app.ActionBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
@@ -179,7 +178,7 @@ class MainActivity : AppCompatActivity() {
 
         balance.text = "${rupiahFormats(totalAmount)}"
         budget.text = "${rupiahFormats(budgetAmount)}"
-        expense.text = "${rupiahFormats(expenseAmount)}"
+        expense.text = "${rupiahFormats(Math.abs(expenseAmount))}"
     }
 
     private fun search(query : String): List<Transaction>{
@@ -224,11 +223,6 @@ class MainActivity : AppCompatActivity() {
         var rupiahFormats = numberFormat.format((number))
         var split = rupiahFormats.split(',')
         var length = split[0].length
-        if(number >= 0){
-            return split[0].substring(0,2)+"."+split[0].substring(2,length)
-        } else {
-            return split[0].substring(0,3)+"."+split[0].substring(3,length)
-        }
-
+        return split[0].substring(0,2)+"."+split[0].substring(2,length)
     }
 }

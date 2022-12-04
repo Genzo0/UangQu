@@ -9,7 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import java.text.DateFormatSymbols
 import java.text.NumberFormat
+import java.time.Month
+import java.time.format.TextStyle
 import java.util.*
 
 class TransactionAdapter(private var transactions: List<Transaction>) : RecyclerView.Adapter<TransactionAdapter.TransactionHolder>() {
@@ -18,6 +21,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         val label : TextView = view.findViewById(R.id.label)
         val amount : TextView = view.findViewById(R.id.amount)
         val icon : ImageView = view.findViewById(R.id.icon_list)
+        val date : TextView = view.findViewById(R.id.date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionHolder {
@@ -40,6 +44,13 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
 
         holder.label.text = transaction.label
 
+        val date = transaction.date.split('-')
+        val month = getMonth(date[1].toString().toInt())
+        val year = date[0]
+        val day = date[2]
+
+        holder.date.text = day + " " + month + " " + year
+
         holder.itemView.setOnClickListener{
             val intent = Intent(context, DetailedActivity::class.java)
             intent.putExtra("transaction", transaction)
@@ -51,10 +62,17 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         return transactions.size
     }
 
+    private fun getMonth(month : Int): String{
+        val localeId = Locale("id", "ID")
+        val month = Month.of(month).getDisplayName(TextStyle.FULL_STANDALONE, localeId)
+        return month
+    }
+
     fun setData(transactions : List<Transaction>){
         this.transactions = transactions
         notifyDataSetChanged()
     }
+
     private fun rupiahFormats(number : Long) : String{
         val localeId = Locale("id", "ID")
         val numberFormat = NumberFormat.getCurrencyInstance(localeId)
