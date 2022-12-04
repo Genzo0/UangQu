@@ -1,5 +1,6 @@
 package com.example.contohtugasakhir
 
+import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -20,7 +21,11 @@ class AddTransactionActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityAddTransactionBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        replaceFragment(OutcomeFragment())
+        if(savedInstanceState==null){
+            replaceFragment(OutcomeFragment())
+        }
+
+
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
@@ -42,5 +47,11 @@ class AddTransactionActivity : AppCompatActivity() {
         fragmentTransaction.replace(R.id.frame_layout, fragment)
         fragmentTransaction.commit()
     }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+    }
+
+
 
 }

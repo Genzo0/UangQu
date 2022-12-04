@@ -12,9 +12,10 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -46,6 +47,7 @@ class IncomeFragment : Fragment() {
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
     private lateinit var incomeLayout : ConstraintLayout
+    private val sharedViewModel : AddViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -71,16 +73,17 @@ class IncomeFragment : Fragment() {
         incomeLayout = view.findViewById(R.id.incomeLayout)
 
         labelInput.addTextChangedListener{
-            if(it!!.count()>0) labelLayout.error = null
-        }
-        amountInput.addTextChangedListener{
-            if(it!!.count()>0) amountLayout.error = null
+            if(it!!.count()>0) {
+                labelLayout.error = null
+            }
+            sharedViewModel.setLabelIncome(it.toString())
         }
 
         amountInput.addTextChangedListener(object : TextWatcher {
             var setEditText = amountInput.text.toString().trim()
             override fun afterTextChanged(s: Editable?) {
                 if(s!!.count()>0) amountLayout.error = null
+                sharedViewModel.setAmountIncome(s.toString())
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -101,6 +104,10 @@ class IncomeFragment : Fragment() {
                 }
             }
         })
+
+        descriptionInput.addTextChangedListener{
+            sharedViewModel.setDescriptionIncome(it.toString())
+        }
 
         val cal = Calendar.getInstance()
         dateInput.setText(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
@@ -144,6 +151,17 @@ class IncomeFragment : Fragment() {
             activity?.finish()
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        labelInput = view.findViewById(R.id.labelInput)
+        amountInput = view.findViewById(R.id.amountInput)
+        descriptionInput = view.findViewById(R.id.descriptionInput)
+
+        labelInput.setText(sharedViewModel.getLabelIncome())
+        amountInput.setText(sharedViewModel.getAmountIncome())
+        descriptionInput.setText(sharedViewModel.getDescriptionIncome())
     }
 
     private fun updateLabel(cal: Calendar) {

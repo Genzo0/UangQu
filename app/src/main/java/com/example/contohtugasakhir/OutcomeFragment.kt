@@ -2,6 +2,7 @@ package com.example.contohtugasakhir
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -15,6 +16,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -46,9 +48,12 @@ class OutcomeFragment : Fragment() {
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
     private lateinit var outcomeLayout : ConstraintLayout
+    private val sharedViewModel : AddViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
     }
 
     override fun onCreateView(
@@ -69,13 +74,19 @@ class OutcomeFragment : Fragment() {
         outcomeLayout = view.findViewById(R.id.outcomeLayout)
 
         labelInput.addTextChangedListener{
-            if(it!!.count()>0) labelLayout.error = null
+            if(it!!.count()>0) {
+                labelLayout.error = null
+            }
+            sharedViewModel.setLabelOutcome(it.toString())
         }
 
         amountInput.addTextChangedListener(object : TextWatcher {
             var setEditText = amountInput.text.toString().trim()
             override fun afterTextChanged(s: Editable?) {
-                if(s!!.count()>0) amountLayout.error = null
+                if(s!!.count()>0) {
+                    amountLayout.error = null
+                }
+                sharedViewModel.setAmountOutcome(s.toString())
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -96,6 +107,12 @@ class OutcomeFragment : Fragment() {
                 }
             }
         })
+
+        descriptionInput.addTextChangedListener{
+
+            sharedViewModel.setDescriptionOutcome(it.toString())
+
+        }
 
         val cal = Calendar.getInstance()
         dateInput.setText(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
@@ -138,8 +155,22 @@ class OutcomeFragment : Fragment() {
         closeButton.setOnClickListener{
             activity?.finish()
         }
+
         return view
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        labelInput = view.findViewById(R.id.labelInput)
+        amountInput = view.findViewById(R.id.amountInput)
+        descriptionInput = view.findViewById(R.id.descriptionInput)
+
+        labelInput.setText(sharedViewModel.getLabelOutcome())
+        amountInput.setText(sharedViewModel.getAmountOutcome())
+        descriptionInput.setText(sharedViewModel.getDescriptionOutcome())
+    }
+
+
 
     private fun updateLabel(cal: Calendar) {
         val myFormat = "yyyy-MM-dd" // mention the format you need
