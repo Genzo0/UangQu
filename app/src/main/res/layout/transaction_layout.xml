@@ -6,8 +6,8 @@
     android:gravity="center_vertical"
     android:clickable="true"
     android:background="@drawable/background_item_rv"
-    android:elevation="0.4dp"
-    android:layout_marginBottom="2dp"
+    android:elevation="1dp"
+    android:layout_marginBottom="4dp"
     android:layout_marginHorizontal="2dp"
     >
 
@@ -30,28 +30,30 @@
             android:id="@+id/label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bananas"
-            android:textSize="20sp"
             android:layout_marginStart="6dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="@font/cabin_condensed_semibold"
+            android:text="Bananas"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/label_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="04 Desember 2022"
-            android:textSize="12sp"
             android:layout_marginStart="6dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="@font/ubuntu"
+            android:text="04 Desember 2022"
+            android:textSize="12sp" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="$12"
-        android:textSize="20sp"
         android:layout_marginEnd="12dp"
-        />
+        android:fontFamily="@font/dm_sans_bold"
+        android:text="$12"
+        android:textSize="20sp" />
 
 </LinearLayout>

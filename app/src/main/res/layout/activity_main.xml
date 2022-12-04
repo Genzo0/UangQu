@@ -8,7 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#FFFFFF"
+    android:background="#e6e5a3"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,24 +19,29 @@
             android:id="@+id/balance_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="18dp"
+            android:layout_marginStart="14dp"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Total UangMu"
+                android:text="Sisa Saldomu"
                 android:textAllCaps="false"
-                android:textSize="20sp"
-                android:textStyle="bold"></TextView>
+                android:fontFamily="@font/commissioner_bold"
+                android:textSize="26sp"
+                android:layout_weight="1"></TextView>
 
             <TextView
                 android:id="@+id/balance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="$300"
-                android:textSize="32sp"
+                android:fontFamily="@font/alatsi"
+                android:textSize="30sp"
+                android:layout_marginEnd="8dp"
                 android:textStyle="bold"></TextView>
         </LinearLayout>
 
@@ -45,56 +50,69 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/balance_layout"
-            android:layout_marginTop="12dp"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="12dp"
             android:layout_marginEnd="10dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp">
+                android:layout_marginVertical="10dp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="0.5"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/budget"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:fontFamily="@font/alatsi"
                         android:text="$400"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/green"/>
+                        android:textColor="#9D9B00"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Budget"
-                        android:textSize="14sp"
-                        android:textAllCaps="true"/>
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Pemasukanmu"
+                        android:textAllCaps="false"
+                        android:textSize="18sp" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="0.5"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
+
                     <TextView
                         android:id="@+id/expense"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:fontFamily="@font/alatsi"
                         android:text="$400"
-                        android:textSize="26sp"
-                        android:textStyle="bold"
-                        android:textColor="@color/red"/>
+                        android:textColor="@color/red"
+                        android:textSize="28sp"
+                        android:textStyle="bold" />
+
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Expense"
-                        android:textSize="14sp"
-                        android:textAllCaps="true"/>
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Pengeluaranmu"
+                        android:textAllCaps="false"
+                        android:textSize="18sp" />
                 </LinearLayout>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -106,20 +124,22 @@
             android:layout_marginHorizontal="8dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/background_transaction"
-            android:orientation="vertical"
-            android:elevation="1dp">
+            android:elevation="2dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/recyclerview_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/dashboard"
+                android:layout_marginBottom="10dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="12dp"
-                android:text="Transaction"
+                android:fontFamily="@font/commissioner_bold"
+                android:text="Transaksi"
                 android:textAllCaps="true"
-                android:textSize="14sp"
-                android:textStyle="bold" />
+                android:textSize="16sp"
+                android:textStyle="bold"/>
 
             <LinearLayout
                 android:id="@+id/searchLayout"
@@ -129,18 +149,21 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="Search..."
+                    android:hint="Cari Transaksi"
+                    app:boxStrokeWidth="0dp"
+                    app:boxStrokeWidthFocused="0dp"
                     app:errorEnabled="true">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/queryEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/background_search"
                         android:drawableEnd="@drawable/ic_baseline_search_24"
                         android:drawablePadding="12dp"
                         android:inputType="text"
@@ -155,9 +178,10 @@
                 android:layout_height="match_parent"
                 android:layout_below="@id/searchLayout"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp"
+                tools:listitem="@layout/transaction_layout" />
 
         </LinearLayout>
 
@@ -167,11 +191,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp"
-            android:backgroundTint="@color/red"
+            android:layout_margin= "10dp"
+            android:backgroundTint="#9D9B00"
             android:src="@drawable/ic_add"
             app:borderWidth="0dp" />
 
