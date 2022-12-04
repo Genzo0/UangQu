@@ -5,7 +5,20 @@
     android:layout_height="45dp"
     android:gravity="center_vertical"
     android:clickable="true"
-    android:background="?selectableItemBackground">
+    android:background="@drawable/background_item_rv"
+    android:elevation="0.4dp"
+    android:layout_marginBottom="2dp"
+    android:layout_marginHorizontal="2dp"
+    >
+
+    <ImageView
+        android:id="@+id/icon_list"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:src="@drawable/money"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="3dp"
+        />
 
     <TextView
         android:id="@+id/label"

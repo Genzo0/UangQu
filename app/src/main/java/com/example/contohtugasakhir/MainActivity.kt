@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun showSnackbar(){
         val view = findViewById<View>(R.id.coordinator)
-        val snackbar = Snackbar.make(view, "Transaction deleted!", Snackbar.LENGTH_LONG)
+        val snackbar = Snackbar.make(view, "Transaksi Dihapus", Snackbar.LENGTH_LONG)
         snackbar.setAction("Undo"){
             undoDelete()
         }

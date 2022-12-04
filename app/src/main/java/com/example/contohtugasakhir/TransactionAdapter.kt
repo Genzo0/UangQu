@@ -5,6 +5,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -16,6 +17,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
     class TransactionHolder(view: View): RecyclerView.ViewHolder(view){
         val label : TextView = view.findViewById(R.id.label)
         val amount : TextView = view.findViewById(R.id.amount)
+        val icon : ImageView = view.findViewById(R.id.icon_list)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionHolder {
@@ -31,6 +33,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
             holder.amount.text = "+${rupiahFormats(transaction.amount)}"
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.green))
         } else {
+            holder.icon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.money_out))
             holder.amount.text = "${rupiahFormats(transaction.amount)}"
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.red))
         }
