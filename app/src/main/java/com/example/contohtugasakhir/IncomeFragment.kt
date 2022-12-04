@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,7 +24,10 @@ import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.Month
+import java.time.format.DateTimeFormatter
 import java.time.format.TextStyle
+import java.time.temporal.ChronoField
+import java.time.temporal.TemporalAccessor
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -111,7 +115,7 @@ class IncomeFragment : Fragment() {
         }
 
         val cal = Calendar.getInstance()
-        val dateNow = dateNow(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
+        dateNow(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
 
         val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             cal.set(Calendar.YEAR, year)

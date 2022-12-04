@@ -44,12 +44,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
 
         holder.label.text = transaction.label
 
-        val date = transaction.date.split('-')
-        val month = getMonth(date[1].toString().toInt())
-        val year = date[0]
-        val day = date[2]
-
-        holder.date.text = day + " " + month + " " + year
+        holder.date.text = transaction.date
 
         holder.itemView.setOnClickListener{
             val intent = Intent(context, DetailedActivity::class.java)
@@ -60,12 +55,6 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
 
     override fun getItemCount(): Int {
         return transactions.size
-    }
-
-    private fun getMonth(month : Int): String{
-        val localeId = Locale("id", "ID")
-        val month = Month.of(month).getDisplayName(TextStyle.FULL_STANDALONE, localeId)
-        return month
     }
 
     fun setData(transactions : List<Transaction>){
