@@ -1,130 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/rootView"
+    android:background="#e6e5a3"
     tools:context=".DetailedActivity">
 
-    <ImageButton
-        android:id="@+id/closeButton"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
-        android:layout_margin="12dp"
-        android:background="@drawable/close_background"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/close_desc_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#9d9b00"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:elevation="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/commissioner_bold"
+            android:text="Detail Transaksi"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/closeButton"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginBottom="15dp"
+            android:background="@drawable/close_background"
+            android:backgroundTint="@color/white" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/close_desc_layout"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/background_item_rv"
+        android:elevation="2dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:padding="5dp">
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/labelLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
-            app:boxStrokeWidth="0dp"
             android:hint="Label"
-            app:errorEnabled="true">
+            app:boxStrokeColor="@color/teal_200"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/labelInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="12dp"
+                android:background="@drawable/background_detail"
+                android:inputType="text"
                 android:maxLines="1"
-                android:textSize="34sp"
-                android:inputType="text"/>
+                android:textSize="20sp"
+                android:fontFamily="@font/ubuntu"
+                android:elevation="1dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/amountLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
+            android:hint="Nominal"
             app:boxStrokeWidth="0dp"
-            android:hint="Amount"
-            app:errorEnabled="true">
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/amountInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/money_selector"
+                android:drawableStart="@drawable/money_bag"
                 android:drawablePadding="12dp"
+                android:inputType="numberDecimal|numberSigned"
                 android:maxLines="1"
-                android:textSize="34sp"
-                android:inputType="numberDecimal|numberSigned"/>
+                android:fontFamily="@font/ubuntu"
+                android:textSize="20sp"
+                android:background="@drawable/background_detail"
+                android:elevation="1dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
+
+            android:layout_marginTop="10dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:hint="Deskripsi"
             app:boxStrokeWidth="0dp"
-            android:hint="Description"
-            app:errorEnabled="true">
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/descriptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="12dp"
-                android:textSize="34sp"
-                android:maxLines="1"
-                android:inputType="text"/>
+                android:inputType="text"
+                android:fontFamily="@font/ubuntu"
+                android:maxLines="2"
+                android:textSize="20sp"
+                android:elevation="1dp"
+                android:background="@drawable/background_detail"/>
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dateLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="10dp"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
+            android:layout_marginBottom="15dp"
+            android:hint="Tanggal"
             app:boxStrokeWidth="0dp"
-            android:hint="Date"
-            app:errorEnabled="true">
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintTextColor="@color/black">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/dateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawablePadding="12dp"
-                android:textSize="34sp"
-                android:maxLines="1"
+                android:focusable="false"
                 android:inputType="text"
-                android:focusable="false"/>
+                android:fontFamily="@font/ubuntu"
+                android:maxLines="1"
+                android:textSize="20sp"
+                android:elevation="1dp"
+                android:background="@drawable/background_detail"/>
         </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/linearLayout"
+        android:orientation="horizontal"
+        android:layout_marginTop="40dp">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/updateButton"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginHorizontal="5dp"
+            android:text="Update Transaksi"
+            android:textSize="18sp"
+            android:fontFamily="@font/commissioner_bold"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:background="@drawable/background_btn"
+            android:paddingBottom="5dp"
+            android:elevation="3dp"
+            />
+
+
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/updateButton"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/green"
-        android:padding="10dp"
-        android:text="Update Transaction"
-        android:layout_margin="10dp"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+<!--    <Button-->
+<!--        android:id="@+id/updateButton"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/linearLayout"-->
+<!--        android:layout_marginStart="10dp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_marginEnd="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:backgroundTint="@color/green"-->
+<!--        android:padding="10dp"-->
+<!--        android:text="Update Transaksi"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:visibility="visible" />-->
+
+</RelativeLayout>

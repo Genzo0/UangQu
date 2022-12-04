@@ -8,7 +8,9 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
@@ -27,7 +29,7 @@ class DetailedActivity : AppCompatActivity() {
     private lateinit var amountLayout : TextInputLayout
     private lateinit var descriptionLayout : TextInputLayout
     private lateinit var closeButton : ImageButton
-    private lateinit var rootView : ConstraintLayout
+    private lateinit var rootView : RelativeLayout
     private lateinit var transaction: Transaction
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
