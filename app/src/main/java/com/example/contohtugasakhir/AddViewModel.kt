@@ -13,8 +13,6 @@ class AddViewModel : ViewModel() {
     private var amountOutcome = ""
     private var descriptionIncome = ""
     private var descriptionOutcome = ""
-    private var dateIncome = ""
-    private var dateOutcome = ""
 
     fun setLabelIncome(label : String){
         labelIncome = label
