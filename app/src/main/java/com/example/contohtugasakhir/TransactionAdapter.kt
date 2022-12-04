@@ -34,6 +34,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         val context = holder.amount.context
 
         if(transaction.amount >= 0){
+            holder.icon.setImageDrawable(ContextCompat.getDrawable(context, R.drawable.money))
             holder.amount.text = "+${rupiahFormats(transaction.amount)}"
             holder.amount.setTextColor(ContextCompat.getColor(context, R.color.green))
         } else {

@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
@@ -49,7 +50,7 @@ class OutcomeFragment : Fragment() {
     private lateinit var closeButton : ImageButton
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
-    private lateinit var outcomeLayout : ConstraintLayout
+    private lateinit var outcomeLayout : RelativeLayout
     private val sharedViewModel : AddViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {

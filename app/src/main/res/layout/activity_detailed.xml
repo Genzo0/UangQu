@@ -14,9 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#9d9b00"
+        android:elevation="10dp"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
-        android:elevation="5dp">
+        android:paddingBottom="5dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -47,21 +47,31 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/close_desc_layout"
-        android:layout_marginTop="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="35dp"
         android:background="@drawable/background_item_rv"
         android:elevation="2dp"
         android:orientation="vertical"
         android:padding="5dp">
 
+        <ImageView
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/lending" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/labelLayout"
             style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
+            android:clipChildren="false"
             android:hint="Label"
             app:boxStrokeColor="@color/teal_200"
             app:boxStrokeWidth="0dp"
@@ -73,22 +83,24 @@
                 android:id="@+id/labelInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="1dp"
                 android:background="@drawable/background_detail"
+                android:elevation="1dp"
+                android:fontFamily="@font/ubuntu"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textSize="20sp"
-                android:fontFamily="@font/ubuntu"
-                android:elevation="1dp"/>
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/amountLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="70dp"
             android:layout_marginStart="12dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
+            android:clipChildren="false"
             android:hint="Nominal"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
@@ -99,25 +111,24 @@
                 android:id="@+id/amountInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawableStart="@drawable/money_bag"
-                android:drawablePadding="12dp"
+                android:layout_marginHorizontal="1dp"
+                android:background="@drawable/background_detail"
+                android:elevation="1dp"
+                android:fontFamily="@font/ubuntu"
                 android:inputType="numberDecimal|numberSigned"
                 android:maxLines="1"
-                android:fontFamily="@font/ubuntu"
-                android:textSize="20sp"
-                android:background="@drawable/background_detail"
-                android:elevation="1dp"/>
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/descriptionLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-
-            android:layout_marginTop="10dp"
+            android:layout_height="70dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
+            android:clipChildren="false"
             android:hint="Deskripsi"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
@@ -128,24 +139,26 @@
                 android:id="@+id/descriptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="12dp"
-                android:inputType="text"
-                android:fontFamily="@font/ubuntu"
-                android:maxLines="2"
-                android:textSize="20sp"
+                android:layout_marginHorizontal="1dp"
+                android:background="@drawable/background_detail"
                 android:elevation="1dp"
-                android:background="@drawable/background_detail"/>
+                android:fontFamily="@font/ubuntu"
+                android:inputType="text"
+                android:maxLines="2"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/dateLayout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
-            android:layout_marginTop="10dp"
+            android:layout_height="70dp"
             android:layout_marginStart="12dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="12dp"
             android:layout_marginBottom="15dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
             android:hint="Tanggal"
             app:boxStrokeWidth="0dp"
             app:boxStrokeWidthFocused="0dp"
@@ -156,40 +169,43 @@
                 android:id="@+id/dateInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:drawablePadding="12dp"
-                android:focusable="false"
-                android:inputType="text"
-                android:fontFamily="@font/ubuntu"
-                android:maxLines="1"
-                android:textSize="20sp"
+                android:layout_marginHorizontal="1dp"
+                android:background="@drawable/background_detail"
                 android:elevation="1dp"
-                android:background="@drawable/background_detail"/>
+                android:focusable="false"
+                android:fontFamily="@font/ubuntu"
+                android:inputType="text"
+                android:maxLines="1"
+                android:textSize="20sp" />
         </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="65dp"
         android:layout_below="@id/linearLayout"
+        android:clipChildren="false"
+        android:clipToOutline="false"
+        android:clipToPadding="false"
         android:orientation="horizontal"
-        android:layout_marginTop="40dp">
+        android:padding="1dp">
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/updateButton"
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="60dp"
             android:layout_marginHorizontal="5dp"
-            android:text="Update Transaksi"
-            android:textSize="18sp"
-            android:fontFamily="@font/commissioner_bold"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
             android:background="@drawable/background_btn"
-            android:paddingBottom="5dp"
+            android:clipToOutline="false"
             android:elevation="3dp"
-            />
-
-
+            android:fontFamily="@font/commissioner_bold"
+            android:padding="5dp"
+            android:paddingBottom="5dp"
+            android:text="Update Transaksi"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:visibility="invisible"/>
 
     </LinearLayout>
 

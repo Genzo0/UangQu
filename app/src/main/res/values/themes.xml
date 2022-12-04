@@ -10,9 +10,18 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
+        <item name="android:navigationBarColor">@color/cream</item>
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/textMain</item>
+    </style>
+
+    <style name="navbar" parent="Theme.ContohTugasAkhir">
+        <item name="colorPrimary">@color/white</item>
+    </style>
+
+    <style name="navbar_active" parent="Theme.ContohTugasAkhir">
+        <item name="colorPrimary">@color/black</item>
     </style>
 
     <style name="outcome" parent="Theme.ContohTugasAkhir">
@@ -22,5 +31,6 @@
     <style name="income" parent="Theme.ContohTugasAkhir">
         <item name="colorPrimary">@color/green</item>
     </style>
+
 
 </resources>

@@ -25,7 +25,7 @@ class AddTransactionActivity : AppCompatActivity() {
             replaceFragment(OutcomeFragment())
         }
 
-
+        binding.bottomNavigationView.setItemIconTintList(null)
 
         binding.bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){

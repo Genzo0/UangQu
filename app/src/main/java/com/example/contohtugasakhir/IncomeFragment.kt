@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.RelativeLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
@@ -51,7 +52,7 @@ class IncomeFragment : Fragment() {
     private lateinit var closeButton : ImageButton
     private lateinit var dateLayout : TextInputLayout
     private lateinit var dateInput : TextInputEditText
-    private lateinit var incomeLayout : ConstraintLayout
+    private lateinit var incomeLayout : RelativeLayout
     private val sharedViewModel : AddViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
