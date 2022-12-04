@@ -8,7 +8,7 @@ import androidx.room.Update
 
 @Dao
 interface TransactionDao {
-    @Query("select * from transactions")
+    @Query("select * from transactions order by id desc")
     fun getAll(): List<Transaction>
 
     @Insert
