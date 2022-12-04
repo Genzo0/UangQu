@@ -15,7 +15,6 @@ import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.room.Room
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -23,6 +22,8 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
+import java.time.Month
+import java.time.format.TextStyle
 import java.util.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -110,7 +111,7 @@ class IncomeFragment : Fragment() {
         }
 
         val cal = Calendar.getInstance()
-        dateInput.setText(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
+        val dateNow = dateNow(SimpleDateFormat("yyyy-MM-dd").format(System.currentTimeMillis()))
 
         val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             cal.set(Calendar.YEAR, year)
@@ -164,11 +165,29 @@ class IncomeFragment : Fragment() {
         descriptionInput.setText(sharedViewModel.getDescriptionIncome())
     }
 
+    private fun getMonth(month : Int): String{
+        val localeId = Locale("id", "ID")
+        val month = Month.of(month).getDisplayName(TextStyle.FULL_STANDALONE, localeId)
+        return month
+    }
+
+    private fun dateNow(format: String){
+        val date = format.split('-')
+        val year = date[0]
+        val month = getMonth(date[1].toString().toInt())
+        val day = date[2]
+        dateInput.setText(day + " " + month + " " + year)
+    }
+
     private fun updateLabel(cal: Calendar) {
         val myFormat = "yyyy-MM-dd"
         val localeIndonesia = Locale("id", "ID")
         val sdf = SimpleDateFormat(myFormat, localeIndonesia)
-        dateInput.setText(sdf.format(cal.time))
+        val date =sdf.format(cal.time).split('-')
+        val year = date[0]
+        val month = getMonth(date[1].toString().toInt())
+        val day = date[2]
+        dateInput.setText(day + " " + month + " " + year)
     }
 
     private fun insert(transaction: Transaction){

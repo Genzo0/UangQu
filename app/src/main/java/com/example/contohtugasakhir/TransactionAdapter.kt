@@ -62,7 +62,7 @@ class TransactionAdapter(private var transactions: List<Transaction>) : Recycler
         return transactions.size
     }
 
-    fun getMonth(month : Int): String{
+    private fun getMonth(month : Int): String{
         val localeId = Locale("id", "ID")
         val month = Month.of(month).getDisplayName(TextStyle.FULL_STANDALONE, localeId)
         return month
