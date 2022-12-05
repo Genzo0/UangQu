@@ -149,12 +149,13 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-                    android:hint="Cari Transaksi"
+
+                    app:hintEnabled="false"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
                     app:errorEnabled="true">
@@ -163,6 +164,7 @@
                         android:id="@+id/queryEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:hint="Cari Transaksi"
                         android:background="@drawable/background_search"
                         android:drawableEnd="@drawable/ic_baseline_search_24"
                         android:drawablePadding="12dp"
