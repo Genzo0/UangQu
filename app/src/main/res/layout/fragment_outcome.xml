@@ -42,248 +42,260 @@
             android:backgroundTint="@color/white" />
     </LinearLayout>
 
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
+        android:id="@+id/scrollViewOutcome"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/close_desc_layout"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginTop="20dp"
-
-        android:background="@drawable/background_item_rv"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:elevation="2dp"
-        android:orientation="vertical">
+        android:layout_height="550dp"
+        android:layout_below="@id/close_desc_layout">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/background_add"
-            android:elevation="1dp"
-            android:orientation="vertical"
-            android:padding="15dp">
-
-            <ImageView
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:src="@drawable/income_ic" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="5dp"
-
-                android:fontFamily="@font/commissioner_bold"
-                android:text="PENGELUARAN"
-                android:textSize="21dp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="Label" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/labelLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            <LinearLayout
+                android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:clipChildren="false"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="20dp"
 
-                android:hint="Label"
-
-                android:padding="2dp"
-                app:boxCollapsedPaddingTop="0dp"
-
-                app:boxStrokeWidth="0dp"
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/labelInput"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/background_detail"
-                    android:drawableStart="@drawable/label_selector"
-                    android:drawablePadding="10dp"
-                    android:elevation="1dp"
-                    android:fontFamily="@font/ubuntu"
-                    android:hint="Label"
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="Nominal" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/amountLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
-                android:clipChildren="false"
-
-                android:padding="2dp"
-                app:boxStrokeWidth="0dp"
-
-                app:boxStrokeWidthFocused="0dp"
-                app:errorEnabled="true"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/amountInput"
-                    android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/background_detail"
-                    android:drawableStart="@drawable/money_selector"
-                    android:drawablePadding="12dp"
-                    android:elevation="1dp"
-                    android:fontFamily="@font/ubuntu"
-                    android:hint="Nominal"
-                    android:inputType="numberDecimal|numberSigned"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:orientation="vertical"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="Deskripsi" />
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/descriptionLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-
+                android:background="@drawable/background_item_rv"
                 android:clipChildren="false"
                 android:clipToPadding="false"
+                android:elevation="2dp"
+                android:orientation="vertical">
 
-                android:padding="2dp"
-                app:boxStrokeWidth="0dp"
-
-                app:boxStrokeWidthFocused="0dp"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/descriptionInput"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/background_detail"
-                    android:drawableStart="@drawable/description_selector"
-                    android:drawablePadding="12dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/background_add"
                     android:elevation="1dp"
-                    android:fontFamily="@font/ubuntu"
-                    android:hint="Deskripsi"
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
-        </LinearLayout>
+                    android:orientation="vertical"
+                    android:padding="15dp">
 
+                    <ImageView
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/income_ic" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="15dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/ubuntu_medium"
-                android:text="Tanggal" />
+                        android:fontFamily="@font/commissioner_bold"
+                        android:text="PENGELUARAN"
+                        android:textSize="21dp" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/dateLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="250dp"
-                android:layout_height="60dp"
+                </LinearLayout>
 
-                android:clipChildren="false"
-                android:clipToPadding="false"
-
-                android:padding="2dp"
-                app:boxStrokeWidth="0dp"
-
-                app:boxStrokeWidthFocused="0dp"
-                app:hintEnabled="false">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/dateInput"
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
-                    android:layout_margin="1dp"
-                    android:background="@drawable/background_detail"
-                    android:drawableStart="@drawable/ic_date"
-                    android:drawablePadding="12dp"
-                    android:elevation="1dp"
-                    android:focusable="false"
-                    android:fontFamily="@font/ubuntu"
-                    android:hint="Tanggal"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
 
-                    android:inputType="text"
-                    android:maxLines="1" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Label" />
 
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/labelLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clipChildren="false"
+
+                        android:hint="Label"
+
+                        android:padding="2dp"
+                        app:boxCollapsedPaddingTop="0dp"
+
+                        app:boxStrokeWidth="0dp"
+                        app:boxStrokeWidthFocused="0dp"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/labelInput"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_detail"
+                            android:drawableStart="@drawable/label_selector"
+                            android:drawablePadding="10dp"
+                            android:elevation="1dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:hint="Label"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Nominal" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/amountLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:clipChildren="false"
+
+                        android:padding="2dp"
+                        app:boxStrokeWidth="0dp"
+
+                        app:boxStrokeWidthFocused="0dp"
+                        app:errorEnabled="true"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/amountInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_detail"
+                            android:drawableStart="@drawable/money_selector"
+                            android:drawablePadding="12dp"
+                            android:elevation="1dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:hint="Nominal"
+                            android:inputType="numberDecimal|numberSigned"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Deskripsi" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/descriptionLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+
+                        android:padding="2dp"
+                        app:boxStrokeWidth="0dp"
+
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/descriptionInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_detail"
+                            android:drawableStart="@drawable/description_selector"
+                            android:drawablePadding="12dp"
+                            android:elevation="1dp"
+                            android:fontFamily="@font/ubuntu"
+                            android:hint="Deskripsi"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:fontFamily="@font/ubuntu_medium"
+                        android:text="Tanggal" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/dateLayout"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:layout_width="250dp"
+                        android:layout_height="60dp"
+
+                        android:clipChildren="false"
+                        android:clipToPadding="false"
+
+                        android:padding="2dp"
+                        app:boxStrokeWidth="0dp"
+
+                        app:boxStrokeWidthFocused="0dp"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/dateInput"
+                            android:layout_width="match_parent"
+                            android:layout_height="55dp"
+                            android:layout_margin="1dp"
+                            android:background="@drawable/background_detail"
+                            android:drawableStart="@drawable/ic_date"
+                            android:drawablePadding="12dp"
+                            android:elevation="1dp"
+                            android:focusable="false"
+                            android:fontFamily="@font/ubuntu"
+                            android:hint="Tanggal"
+
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
+    </ScrollView>
 
-    </LinearLayout>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addTransactionButton"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@id/linearLayout"
+        android:layout_below="@id/scrollViewOutcome"
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/background_btn"
