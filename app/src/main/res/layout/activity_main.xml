@@ -8,8 +8,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#e6e5a3"
-    >
+    android:background="#e6e5a3">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,7 +31,7 @@
                 android:fontFamily="@font/commissioner_bold"
                 android:text="Sisa Saldomu"
                 android:textAllCaps="false"
-                android:textSize="26sp"></TextView>
+                android:textSize="26sp"/>
 
             <TextView
                 android:id="@+id/balance"
@@ -42,7 +41,7 @@
                 android:fontFamily="@font/alatsi"
                 android:text="$300"
                 android:textSize="30sp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="bold"/>
         </LinearLayout>
 
         <androidx.cardview.widget.CardView
@@ -154,7 +153,6 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginEnd="8dp"
-
                     app:hintEnabled="false"
                     app:boxStrokeWidth="0dp"
                     app:boxStrokeWidthFocused="0dp"
@@ -164,10 +162,10 @@
                         android:id="@+id/queryEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Cari Transaksi"
                         android:background="@drawable/background_search"
                         android:drawableEnd="@drawable/ic_baseline_search_24"
                         android:drawablePadding="12dp"
+                        android:hint="Cari Transaksi"
                         android:inputType="text"
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
