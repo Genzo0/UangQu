@@ -225,6 +225,10 @@ class MainActivity : AppCompatActivity() {
         var rupiahFormats = numberFormat.format((number))
         var split = rupiahFormats.split(',')
         var length = split[0].length
-        return split[0].substring(0,2)+"."+split[0].substring(2,length)
+        if(number >= 0){
+            return split[0].substring(0,2)+"."+split[0].substring(2,length)
+        } else {
+            return split[0].substring(0,3)+"."+split[0].substring(3,length)
+        }
     }
 }

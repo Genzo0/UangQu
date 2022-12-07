@@ -4,6 +4,8 @@ import android.app.DatePickerDialog
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -17,6 +19,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.time.Month
 import java.time.format.TextStyle
@@ -54,7 +57,7 @@ class DetailedActivity : AppCompatActivity() {
 
         transaction = intent.getSerializableExtra("transaction") as Transaction
         labelInput.setText(transaction.label)
-        amountInput.setText(transaction.amount.toString())
+        amountInput.setText(rupiahFormats(transaction.amount))
         descriptionInput.setText(transaction.description)
         dateInput.setText(transaction.date)
 
@@ -84,17 +87,38 @@ class DetailedActivity : AppCompatActivity() {
             updateButton.visibility = View.VISIBLE
             if(it!!.count()>0) labelLayout.error = null
         }
-        amountInput.addTextChangedListener{
-            updateButton.visibility = View.VISIBLE
-            if(it!!.count()>0) amountLayout.error = null
-        }
+        amountInput.addTextChangedListener(object : TextWatcher {
+            var setEditText = amountInput.text.toString().trim()
+            override fun afterTextChanged(s: Editable?) {
+                if(s!!.count()>0) amountLayout.error = null
+                updateButton.visibility = View.VISIBLE
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if(!s.toString().equals(setEditText)){
+                    amountInput.removeTextChangedListener(this)
+                    var replace = s.toString().replace(Regex("[Rp.]"), "")
+                    if(!replace.isEmpty()){
+                        setEditText = rupiahFormats(replace.toLong())
+                    } else {
+                        setEditText = ""
+                    }
+                    amountInput.setText(setEditText)
+                    amountInput.setSelection(setEditText.length)
+                    amountInput.addTextChangedListener(this)
+                }
+            }
+        })
         descriptionInput.addTextChangedListener{
             updateButton.visibility = View.VISIBLE
         }
 
         updateButton.setOnClickListener {
             val label = labelInput.text.toString()
-            val amount = amountInput.text.toString().toLongOrNull()
+            val amount = amountInput.text.toString().replace(Regex("[Rp.]"), "").toLongOrNull()
             val description = descriptionInput.text.toString()
             val date = dateInput.text.toString()
 
@@ -120,6 +144,19 @@ class DetailedActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+    private fun rupiahFormats(number : Long) : String{
+        val localeId = Locale("id", "ID")
+        val numberFormat = NumberFormat.getCurrencyInstance(localeId)
+        var rupiahFormats = numberFormat.format((number))
+        var split = rupiahFormats.split(',')
+        var length = split[0].length
+        if(number >= 0){
+            return split[0].substring(0,2)+"."+split[0].substring(2,length)
+        } else {
+            return split[0].substring(0,3)+"."+split[0].substring(3,length)
+        }
     }
 
     private fun getMonth(month : Int): String{
